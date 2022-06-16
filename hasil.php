@@ -328,11 +328,10 @@
 
 		<div class="container">		
 			<div class="text-center">
-				<p class="h1">Diagnosa Penyakit Lambung</p>
-				<p class="lead">diagnosa penyakit lambung menggunakan metode certainty factor</p>	
+				<p class="h1">Hasil Diagnosa Penyakit Lambung</p>
 			</div>
 			
-			<form action="" method="post">
+			<!-- <form action="" method="post">
 
 
 				<table class="table table-bordered">		
@@ -765,7 +764,7 @@
 					</tbody>
 				</table>
 				<input class="btn btn-outline-primary" style="float: right;" type="submit" name="submit">
-			</form>		
+			</form>		 -->
 		</div>
 
 		<br><br><br>
@@ -1226,7 +1225,7 @@
 							<div class="card-body">
 								<h4 class="card-title"><?= $status; ?></h4>
 								<h1 class="card-text"><?php $persen = $nilai_tertinggi * 100; echo number_format((float)$persen, 2, '.', ''); echo "%";?></h1>
-								<a href="#" class="btn btn-primary">Print Hasil</a>
+								<a href="#" class="btn btn-primary" onclick="printHasil()" id="buttonClick">Print Hasil</a>
 							</div>
 							<div class="card-footer text-muted">
 								Untuk mendapatkan hasil yang maksimal harap melakukan konsultasi dengan dokter lambung
@@ -1238,8 +1237,12 @@
 			</div>		
 		</div>
 		<script>
-			
+			function printHasil() {
+				const clickButton = document.getElementById("buttonClick");
+				clickButton.classList.add("d-none");
+				window.print();
 
+			}
 		</script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	</body>
