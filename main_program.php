@@ -1218,29 +1218,15 @@
 					<?php if ($jumlah_gejala_dsp == 1) { $nilai_tertinggi = $array_dsp[0]['cf_user'] *  $array_dsp[0]['cf_pakar']; }?>
 					<?php if ($jumlah_gejala_gtp == 1) { $nilai_tertinggi = $array_gtp[0]['cf_user'] *  $array_gtp[0]['cf_pakar']; }?>
 
-					<?php if ($nilai_tertinggi > 0 || $nilai_tertinggi < 0): ?>
-						<div class="card text-center ">
-							<div class="card-header">
-							Hasil
-							</div>
-							<div class="card-body">
-								<h4 class="card-title"><?= $status; ?></h4>
-								<h1 class="card-text"><?php $persen = $nilai_tertinggi * 100; echo number_format((float)$persen, 2, '.', ''); echo "%";?></h1>
-								<a href="#" class="btn btn-primary">Print Hasil</a>
-							</div>
-							<div class="card-footer text-muted">
-								Untuk mendapatkan hasil yang maksimal harap melakukan konsultasi dengan dokter lambung
-							</div>
-						</div>
-						<br><br>
+					<?php if ($status): ?>
+						<h4>status anda adalah : <?= $status; ?></h4>
+						<h1><?php $persen = $nilai_tertinggi * 100; echo number_format((float)$persen, 2, '.', ''); echo "%";?></h1>
+						<h7>untuk hasil lebih akurat silahkan konsultasikan dengan doktor lambung</h7>
 					<?php endif ?>				
 				</div>
 			</div>		
 		</div>
-		<script>
-			
-
-		</script>
+					
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	</body>
 	</html>
