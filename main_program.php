@@ -333,8 +333,6 @@
 			</div>
 			
 			<form action="" method="post">
-
-
 				<table class="table table-bordered">		
 					<thead class="table-primary">
 						<tr>
