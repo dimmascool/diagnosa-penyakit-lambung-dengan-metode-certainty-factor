@@ -398,7 +398,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Ringkasan</h1>
-                        <a href="#" class="btn btn-sm btn-primary shadow-sm" id="buttonClick" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <a href="#" class="btn btn-sm btn-primary shadow-sm d-none" id="buttonClick" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                         <a href="#" class="btn btn-sm btn-primary shadow-sm" id="buttonSaveToServer" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Simpan data di server</a>
                     </div>
 
@@ -830,6 +830,14 @@
                         </div>
                         <?php endif ?>
                         <div class="text-center col-12 mt-5">
+
+                            <?php 
+                                if ($jumlah_gejala_grd == 1) { $nilai_tertinggi_grd = $array_grd[0]['cf_user'] *  $array_grd[0]['cf_pakar']; $status = "GERD";}
+                                if ($jumlah_gejala_gtt == 1) { $nilai_tertinggi_gtt = $array_gtt[0]['cf_user'] *  $array_gtt[0]['cf_pakar']; $status = "Gastritis";}
+                                if ($jumlah_gejala_dsp == 1) { $nilai_tertinggi_dsp = $array_dsp[0]['cf_user'] *  $array_dsp[0]['cf_pakar']; $status = "Dispepsia";}
+                                if ($jumlah_gejala_gtp == 1) { $nilai_tertinggi_gtp = $array_gtp[0]['cf_user'] *  $array_gtp[0]['cf_pakar']; $status = "Gastroparesis";}
+                            ?>
+                            
                             <?php
                                 $nilai_tertinggi = max($nilai_tertinggi_grd, $nilai_tertinggi_gtt, $nilai_tertinggi_dsp, $nilai_tertinggi_gtp); 
                                 if ($nilai_tertinggi == $nilai_tertinggi_grd) {
@@ -840,15 +848,26 @@
                                     $status = "Dispepsia";
                                 } else if ($nilai_tertinggi == $nilai_tertinggi_gtp) {
                                     $status = "Gastroparesis";
-                                }           
+                                }
+
+
+                                
+                                
+                                if ($nilai_tertinggi_gtt == $nilai_tertinggi_dsp ) {
+                                    $status = "Gastritis dan Dispepsia";
+                                }
+
+                                if ($nilai_tertinggi_dsp == $nilai_tertinggi_gtp ) {
+                                    $status = "Dispepsia dan Gastroparesis";
+                                }
+
+                                if ($nilai_tertinggi_grd == $nilai_tertinggi_gtt AND $nilai_tertinggi_grd == $nilai_tertinggi_dsp) {
+                                    $status = "GERD, Gastritis dan Gastroparesis";
+                                }
+              
                             ?>
 
-                            <?php if ($jumlah_gejala_grd == 1) { $nilai_tertinggi = $array_grd[0]['cf_user'] *  $array_grd[0]['cf_pakar']; $status = "GERD";}?>
-                            <?php if ($jumlah_gejala_gtt == 1) { $nilai_tertinggi = $array_gtt[0]['cf_user'] *  $array_gtt[0]['cf_pakar']; $status = "Gastritis";}?>
-                            <?php if ($jumlah_gejala_dsp == 1) { $nilai_tertinggi = $array_dsp[0]['cf_user'] *  $array_dsp[0]['cf_pakar']; $status = "Dispepsia";}?>
-                            <?php if ($jumlah_gejala_gtp == 1) { $nilai_tertinggi = $array_gtp[0]['cf_user'] *  $array_gtp[0]['cf_pakar']; $status = "Gastroparesis";}?>
-
-                            <?php if ($nilai_tertinggi > 0 || $nilai_tertinggi < 0): ?>
+                            <?php if ($nilai_tertinggi != 0): ?>
                                 <div class="card text-center ">
                                     <div class="card-header">
                                     Hasil
