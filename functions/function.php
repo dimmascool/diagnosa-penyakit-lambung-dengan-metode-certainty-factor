@@ -19,7 +19,7 @@
 		if (mysqli_num_rows($check_username) > 0) {
 			session_start();
 			$_SESSION['username'] = $userr;
-			echo "<script>alert('Berhasil login');location.href='index.php'</script>";
+			echo "<script>alert('Success');location.href='index.php'</script>";
 		} else {
 			echo "<script>alert('Username atau Password Salah');location.href='login.php'</script>";
 		}
@@ -31,10 +31,23 @@
 
 		$sql_insert = mysqli_query(koneksi(), "INSERT INTO user VALUES ('','$username_user_regis','$password_user_regis')");
 		if ($sql_insert) {
-			echo "<script>alert('Berhasil didaftarkan');location.href='login.php'</script>";
+			echo "<script>alert('Success');location.href='login.php'</script>";
 		} else {
 			echo "<script>alert('Gagal mendaftarkan user baru');location.href='register.php'</script>";
 		}
+	}
+
+
+	function saveData() {
+		$status = $_POST['status'];
+		$nilai_persentase = $_POST['nilai_persentase'];
+		$username = $_SESSION['username'];
+		$create_on = date("Y-m-d");
+
+		$sql_insert_nilai = mysqli_query(koneksi(), "INSERT INTO data_cf VALUES ('','$username','$status','$nilai_persentase', '$create_on')");
+		if ($sql_insert_nilai) {
+			echo "<script>alert('Success');location.href='profil.php'</script>";
+		} 
 	}
 
 

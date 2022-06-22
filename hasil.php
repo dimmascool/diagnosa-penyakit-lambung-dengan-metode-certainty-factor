@@ -1,12 +1,12 @@
 <?php 
-    error_reporting(0);
+    // error_reporting(0);
     session_start();
 
-    // echo $uyeee = (0.55172413793103 + (-0.2)) / (1-(-0.2));
-    // echo "<br>";
-    // echo $uyeee = (0.46275862068966 + (0.24 * (1 - 0.46275862068966)));
-    // echo "<br>";
-    // echo $uyeee = (0.59169655172414 + (-0.4)) / (1-(-0.4));
+    require 'functions/function.php';
+
+    if (isset($_POST['savedata'])) {
+        saveData();
+    }
 
     $nilai_tertinggi_grd = 0;
     $nilai_tertinggi_gtt = 0;
@@ -354,42 +354,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                       <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <?php require 'template/header.php';?>
-
-                    </ul>
-
-                </nav>
+                <?php require 'template/header.php';?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -397,9 +362,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Ringkasan</h1>
-                        <a href="#" class="btn btn-sm btn-primary shadow-sm d-none" id="buttonClick" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                        <a href="#" class="btn btn-sm btn-primary shadow-sm" id="buttonSaveToServer" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Simpan data di server</a>
+                        <h1 class="h3 mb-0 text-gray-800">Ringkasan</h1>                        
                     </div>
 
                     <div class="row">
@@ -875,6 +838,16 @@
                                     <div class="card-body">
                                         <h4 class="card-title"><?= $status; ?></h4>
                                         <h1 class="card-text"><?php $persen = $nilai_tertinggi * 100; echo number_format((float)$persen, 2, '.', ''); echo "%";?></h1>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <a href="#" class="btn btn-sm btn-primary shadow-sm d-none" id="buttonClick" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a><br><br>
+                                            <?php if (isset($_SESSION['username'])): ?>
+                                                <form method="POST" action="">
+                                                    <input type="text" name="status" value="<?= $status ?>" hidden readonly>
+                                                    <input type="text" name="nilai_persentase" value="<?= $nilai_tertinggi ?>" hidden readonly>
+                                                    <button class="btn btn-sm btn-primary shadow-sm" id="buttonSaveToServer" name="savedata" value="true"><i class="fas fa-download fa-sm text-white-50"></i> Save Data</button>
+                                                </form>
+                                            <?php endif ?>
+                                        </div>
                                     </div>
                                     <div class="card-footer text-muted">
                                         Untuk mendapatkan hasil yang maksimal harap melakukan konsultasi dengan dokter lambung
