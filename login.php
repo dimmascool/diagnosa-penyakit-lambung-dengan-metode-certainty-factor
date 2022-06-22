@@ -1,8 +1,11 @@
-<?php 
+<?php
+    require 'functions/function.php';
     error_reporting(0);
 
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        login($_POST['username'], $_POST['password']);
+    }
     
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,19 +49,17 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="POST" action="">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <input type="text" class="form-control form-control-user" placeholder="Masukan username..." name="username">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="exampleInputPassword" placeholder="password" name="password">
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <button class="btn btn-primary btn-user btn-block" name="login">
                                             Login
-                                        </a>                                        
+                                        </button>                                        
                                     </form>
                                     <hr>
                                     <div class="text-center">
