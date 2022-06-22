@@ -816,16 +816,15 @@
 
                                 
                                 
-                                if ($nilai_tertinggi_gtt == $nilai_tertinggi_dsp ) {
-                                    $status = "Gastritis dan Dispepsia";
-                                }
-
-                                if ($nilai_tertinggi_dsp == $nilai_tertinggi_gtp ) {
-                                    $status = "Dispepsia dan Gastroparesis";
-                                }
-
                                 if ($nilai_tertinggi_grd == $nilai_tertinggi_gtt AND $nilai_tertinggi_grd == $nilai_tertinggi_dsp) {
                                     $status = "GERD, Gastritis dan Gastroparesis";
+                                } else if ($nilai_tertinggi_gtt == $nilai_tertinggi_dsp ) {
+                                    $status = "Gastritis dan Dispepsia";
+                                    if ($nilai_tertinggi_gtt < $nilai_tertinggi_grd) {
+                                        $status = "GERD";
+                                    }
+                                } else if ($nilai_tertinggi_dsp == $nilai_tertinggi_gtp ) {
+                                    $status = "Dispepsia dan Gastroparesis";
                                 }
               
                             ?>

@@ -45,8 +45,9 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <div class="align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Formulir pengisian gejala-gejala passien</h1>
+                         <p class="p mb-0 text-gray-800">Silahkan isi gejala sesuai yang anda rasakan supaya program berjalan lancar</p>
                     </div>
 
                     <form action="hasil.php" method="post">
