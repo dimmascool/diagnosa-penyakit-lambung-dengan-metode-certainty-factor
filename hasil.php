@@ -24,285 +24,68 @@
     $no_gtp = 1;
 
 
-    if (isset($_POST['submit'])) {
+    if (isset($_POST)) {
+        $jumlah_data_gejala = $_POST;
 
 
-        if ($_POST['G01']) {
-            $nilai_tertinggi_grd = $nilai_tertinggi_grd + 1;
+        for ($i=0; $i < (count($jumlah_data_gejala) / 2); $i++) { 
+            $id_gejala = $jumlah_data_gejala['kode_gejala_'.$i];
 
-            $array_grd = array_merge($array_grd, array(
-                array(
-                    'gejala' => 'G01',
-                    'cf_pakar' => '0.8',
-                    'cf_user' => $_POST['G01']
-                )
-            ));
-        }
+            if ($jumlah_data_gejala[$id_gejala] != "") {
+                $sql_check = mysqli_query(koneksi(), "SELECT * FROM gejala WHERE id_gejala = '$id_gejala'");
+                $f_data = mysqli_fetch_array($sql_check);
 
-        if ($_POST['G02']) {
-            $nilai_tertinggi_grd = $nilai_tertinggi_grd + 1;
+                if ($f_data['grd'] == 1) {          
+                    $array_grd = array_merge($array_grd, array(
+                            array(
+                                'gejala' => $id_gejala,
+                                'cf_pakar' => $f_data['cf_pakar'],
+                                'cf_user' => $_POST[$id_gejala]
+                            )
+                        )
+                    );
+                }
 
-            $array_grd = array_merge($array_grd, array(
-                array(
-                    'gejala' => 'G02',
-                    'cf_pakar' => '0.2',
-                    'cf_user' => $_POST['G02']
-                )
-            ));
+                if ($f_data['gtt'] == 1) {          
+                    $array_gtt = array_merge($array_gtt, array(
+                            array(
+                                'gejala' => $id_gejala,
+                                'cf_pakar' => $f_data['cf_pakar'],
+                                'cf_user' => $_POST[$id_gejala]
+                            )
+                        )
+                    );
+                }
 
-        }
+                if ($f_data['dsp'] == 1) {          
+                    $array_dsp = array_merge($array_dsp, array(
+                            array(
+                                'gejala' => $id_gejala,
+                                'cf_pakar' => $f_data['cf_pakar'],
+                                'cf_user' => $_POST[$id_gejala]
+                            )
+                        )
+                    );
+                }
 
-        if ($_POST['G03']) {
-            $nilai_tertinggi_grd = $nilai_tertinggi_grd + 1;
+                if ($f_data['gtp'] == 1) {          
+                    $array_gtp = array_merge($array_gtp, array(
+                            array(
+                                'gejala' => $id_gejala,
+                                'cf_pakar' => $f_data['cf_pakar'],
+                                'cf_user' => $_POST[$id_gejala]
+                            )
+                        )
+                    );
+                }
+            }
+            }
 
-            $array_grd = array_merge($array_grd, array(
-                array(
-                    'gejala' => 'G03',
-                    'cf_pakar' => '0.2',
-                    'cf_user' => $_POST['G03']
-                )
-            ));
-        }
-
-        if ($_POST['G04']) {
-            $nilai_tertinggi_grd = $nilai_tertinggi_grd + 1;
-            $nilai_tertinggi_gtt = $nilai_tertinggi_gtt + 1;
-            $nilai_tertinggi_dsp = $nilai_tertinggi_dsp + 1;
-
-            $array_grd = array_merge($array_grd, array(
-                array(
-                    'gejala' => 'G04',
-                    'cf_pakar' => '0.4',
-                    'cf_user' => $_POST['G04']
-                )
-            ));
-
-            $array_dsp = array_merge($array_dsp, array(
-                array(
-                    'gejala' => 'G04',
-                    'cf_pakar' => '0.4',
-                    'cf_user' => $_POST['G04']
-                )
-            ));
-
-            $array_gtt = array_merge($array_gtt, array(
-                array(
-                    'gejala' => 'G04',
-                    'cf_pakar' => '0.4',
-                    'cf_user' => $_POST['G04']
-                )
-            ));
-        }
-
-        if ($_POST['G05']) {
-            $nilai_tertinggi_grd = $nilai_tertinggi_grd + 1;
-
-            $array_grd = array_merge($array_grd, array(
-                array(
-                    'gejala' => 'G05',
-                    'cf_pakar' => '0.6',
-                    'cf_user' => $_POST['G05']
-                )
-            ));
-        }
-
-        if ($_POST['G06']) {        
-            $nilai_tertinggi_grd = $nilai_tertinggi_grd + 1;
-
-            $array_grd = array_merge($array_grd, array(
-                array(
-                    'gejala' => 'G06',
-                    'cf_pakar' => '0.4',
-                    'cf_user' => $_POST['G06']
-                )
-            ));
-        }
-
-
-
-        if ($_POST['G07']) {
-            $nilai_tertinggi_gtt = $nilai_tertinggi_gtt + 1;
-            $nilai_tertinggi_dsp = $nilai_tertinggi_dsp + 1;
-
-            $array_dsp = array_merge($array_dsp, array(
-                array(
-                    'gejala' => 'G07',
-                    'cf_pakar' => '0.4',
-                    'cf_user' => $_POST['G07']
-                )
-            ));
-
-            $array_gtt = array_merge($array_gtt, array(
-                array(
-                    'gejala' => 'G07',
-                    'cf_pakar' => '0.4',
-                    'cf_user' => $_POST['G07']
-                )
-            ));
-        }
-
-        if ($_POST['G08']) {
-            $nilai_tertinggi_gtt = $nilai_tertinggi_gtt + 1;
             
-            $array_gtt = array_merge($array_gtt, array(
-                array(
-                    'gejala' => 'G08',
-                    'cf_pakar' => '0.2',
-                    'cf_user' => $_POST['G08']
-                )
-            ));
 
-        }
+        
+        
 
-        if ($_POST['G09']) {
-            $nilai_tertinggi_gtt = $nilai_tertinggi_gtt + 1;
-            $nilai_tertinggi_dsp = $nilai_tertinggi_dsp + 1;
-
-            $array_dsp = array_merge($array_dsp, array(
-                array(
-                    'gejala' => 'G09',
-                    'cf_pakar' => '0.2',
-                    'cf_user' => $_POST['G09']
-                )
-            ));
-
-            $array_gtt = array_merge($array_gtt, array(
-                array(
-                    'gejala' => 'G09',
-                    'cf_pakar' => '0.2',
-                    'cf_user' => $_POST['G09']
-                )
-            ));
-        }
-
-        if ($_POST['G10']) {
-            $nilai_tertinggi_gtt = $nilai_tertinggi_gtt + 1;
-
-            $array_gtt = array_merge($array_gtt, array(
-                array(
-                    'gejala' => 'G10',
-                    'cf_pakar' => '0.4',
-                    'cf_user' => $_POST['G10']
-                )
-            ));
-        }
-
-        if ($_POST['G11']) {
-            $nilai_tertinggi_gtp = $nilai_tertinggi_gtp + 1;
-
-            $array_gtp = array_merge($array_gtp, array(
-                array(
-                    'gejala' => 'G11',
-                    'cf_pakar' => '0.6',
-                    'cf_user' => $_POST['G11']
-                )
-            ));
-        }
-
-        if ($_POST['G12']) {
-            $nilai_tertinggi_gtp = $nilai_tertinggi_gtp + 1;
-
-            $array_gtp = array_merge($array_gtp, array(
-                array(
-                    'gejala' => 'G12',
-                    'cf_pakar' => '0.2',
-                    'cf_user' => $_POST['G12']
-                )
-            ));
-        }
-
-        if ($_POST['G13']) {
-            $nilai_tertinggi_gtp = $nilai_tertinggi_gtp + 1;
-
-            $array_gtp = array_merge($array_gtp, array(
-                array(
-                    'gejala' => 'G13',
-                    'cf_pakar' => '0.2',
-                    'cf_user' => $_POST['G13']
-                )
-            ));
-        }
-
-        if ($_POST['G14']) {
-            $nilai_tertinggi_gtp = $nilai_tertinggi_gtp + 1;
-            $nilai_tertinggi_dsp = $nilai_tertinggi_dsp + 1;
-
-            $array_dsp = array_merge($array_dsp, array(
-                array(
-                    'gejala' => 'G14',
-                    'cf_pakar' => '0.6',
-                    'cf_user' => $_POST['G14']
-                )
-            ));
-
-            $array_gtp = array_merge($array_gtp, array(
-                array(
-                    'gejala' => 'G14',
-                    'cf_pakar' => '0.6',
-                    'cf_user' => $_POST['G14']
-                )
-            ));
-        }
-
-        if ($_POST['G15']) {
-            $nilai_tertinggi_gtp = $nilai_tertinggi_gtp + 1;
-
-            $array_gtp = array_merge($array_gtp, array(
-                array(
-                    'gejala' => 'G15',
-                    'cf_pakar' => '0.8',
-                    'cf_user' => $_POST['G15']
-                )
-            ));
-        }
-
-        if ($_POST['G16']) {
-            $nilai_tertinggi_dsp = $nilai_tertinggi_dsp + 1;
-
-            $array_dsp = array_merge($array_dsp, array(
-                array(
-                    'gejala' => 'G16',
-                    'cf_pakar' => '0.6',
-                    'cf_user' => $_POST['G16']
-                )
-            ));
-        }
-
-        if ($_POST['G17']) {
-            $nilai_tertinggi_dsp = $nilai_tertinggi_dsp + 1;
-
-            $array_dsp = array_merge($array_dsp, array(
-                array(
-                    'gejala' => 'G17',
-                    'cf_pakar' => '0.4',
-                    'cf_user' => $_POST['G17']
-                )
-            ));
-        }
-
-        if ($_POST['G18']) {
-            $nilai_tertinggi_dsp = $nilai_tertinggi_dsp + 1;
-
-            $array_dsp = array_merge($array_dsp, array(
-                array(
-                    'gejala' => 'G18',
-                    'cf_pakar' => '0.6',
-                    'cf_user' => $_POST['G18']
-                )
-            ));
-        }
-
-        if ($_POST['G19']) {
-            $nilai_tertinggi_dsp = $nilai_tertinggi_dsp + 1;
-
-            $array_dsp = array_merge($array_dsp, array(
-                array(
-                    'gejala' => 'G19',
-                    'cf_pakar' => '0.8',
-                    'cf_user' => $_POST['G19']
-                )
-            ));
-        }
 
         $jumlah_gejala_grd = count($array_grd);
         $jumlah_gejala_gtt = count($array_gtt);
@@ -314,10 +97,11 @@
         // echo $nilai_tertinggi_dsp;
         // echo $nilai_tertinggi_gtp;
 
+
+
     }
 
 ?>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -812,8 +596,6 @@
                                 } else if ($nilai_tertinggi == $nilai_tertinggi_gtp) {
                                     $status = "Gastroparesis";
                                 }
-
-                                echo $nilai_tertinggi;
 
 
                                 

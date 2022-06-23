@@ -31,7 +31,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-danger">
 
     <div class="container">
 
@@ -57,7 +57,7 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="password" name="password" required>
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block" name="register">
+                                        <button class="btn btn-danger btn-user btn-block" name="register">
                                            Create
                                         </button>                                        
                                     </form>

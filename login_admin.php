@@ -3,7 +3,7 @@
     error_reporting(0);
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
-        login($_POST['username'], $_POST['password']);
+        loginAdmin();
     }
     
 ?>
@@ -18,7 +18,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login</title>
+    <title>Admin Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,7 +31,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-success">
 
     <div class="container">
 
@@ -47,7 +47,7 @@
                             <div class="col-lg-12">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Turn back if u aren't Administrator !</h1>
                                     </div>
                                     <form class="user" method="POST" action="">
                                         <div class="form-group">
@@ -57,15 +57,13 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="password" name="password">
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block" name="login">
+                                        <button class="btn btn-success btn-user btn-block" name="login">
                                             Login
                                         </button>                                        
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="register.php">Create an Account!</a> |
-                                        <a class="small" href="login_admin.php">Login as Admin</a>  |
-                                        <a class="small" href="index.php">Skip Login</a> 
+                                        <a class="small" href="login.php">Login as User</a> 
                                     </div>
                                 </div>
                             </div>

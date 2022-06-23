@@ -19,6 +19,7 @@
 		if (mysqli_num_rows($check_username) > 0) {
 			session_start();
 			$_SESSION['username'] = $userr;
+			$_SESSION['privilege'] = 'Regular User';
 			echo "<script>alert('Success');location.href='index.php'</script>";
 		} else {
 			echo "<script>alert('Username atau Password Salah');location.href='login.php'</script>";
@@ -48,6 +49,21 @@
 		if ($sql_insert_nilai) {
 			echo "<script>alert('Success');location.href='profil.php'</script>";
 		} 
+	}
+
+	function loginAdmin() {
+		$username_admin		= $_POST['username'];
+		$password_admin 	= $_POST['password'];
+
+		$check_username = mysqli_query(koneksi(), "SELECT * FROM admin WHERE username = '$username_admin' AND password = '$password_admin'");
+		if (mysqli_num_rows($check_username) > 0) {
+			session_start();
+			$_SESSION['username'] = $username_admin;
+			$_SESSION['privilege'] = 'Administrator';
+			echo "<script>alert('Success');location.href='admin/index.php'</script>";
+		} else {
+			echo "<script>alert('Username atau Password Salah');location.href='login_admin.php'</script>";
+		}
 	}
 
 
