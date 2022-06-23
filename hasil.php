@@ -8,10 +8,10 @@
         saveData();
     }
 
-    $nilai_tertinggi_grd = 0;
-    $nilai_tertinggi_gtt = 0;
-    $nilai_tertinggi_dsp = 0;
-    $nilai_tertinggi_gtp = 0;
+    $nilai_tertinggi_grd = null;
+    $nilai_tertinggi_gtt = null;
+    $nilai_tertinggi_dsp = null;
+    $nilai_tertinggi_gtp = null;
 
     $array_grd = array();
     $array_gtt = array();
@@ -812,6 +812,8 @@
                                 } else if ($nilai_tertinggi == $nilai_tertinggi_gtp) {
                                     $status = "Gastroparesis";
                                 }
+
+                                echo $nilai_tertinggi;
 
 
                                 
