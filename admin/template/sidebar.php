@@ -40,7 +40,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-fw fa-table"></i><span>Tabel Relasi</span></a>
+        <a class="nav-link" href="tabel_relasi.php"><i class="fas fa-fw fa-table"></i><span>Tabel Relasi</span></a>
     </li>
     
     <!-- Divider -->
