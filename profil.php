@@ -5,7 +5,8 @@
     require 'functions/function.php';
     $no = 1;
     $username = $_SESSION['username'];
-    $sql_data_cf = mysqli_query(koneksi(), "SELECT * FROM data_cf WHERE username = '$username'");
+    $id_user = $_SESSION['id_user'];
+    $sql_data_cf = mysqli_query(koneksi(), "SELECT * FROM data_cf WHERE id_user = '$id_user'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +19,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hasil</title>
+    <title>Profil | Riwayat Check Up</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
