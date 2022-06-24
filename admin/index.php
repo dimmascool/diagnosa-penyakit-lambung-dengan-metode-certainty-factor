@@ -59,9 +59,9 @@ if ($_SESSION['privilege'] != 'Administrator') {
                 	
 
                     <!-- Page Heading -->
-                    <div class="align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Formulir pengisian gejala-gejala passien</h1>
-                         <p class="p mb-0 text-gray-800">Silahkan isi gejala sesuai yang anda rasakan supaya program berjalan lancar</p>
+                    <div class="text-center">
+                        <h1 class="h3 mb-0 text-gray-800">Ini adalah halaman administrator</h1>
+                         <p class="p mb-0 text-gray-800">Silahkan pilih menu disamping untuk menuju fitur yang diinginkan</p>
                     </div>
             
                 </div>

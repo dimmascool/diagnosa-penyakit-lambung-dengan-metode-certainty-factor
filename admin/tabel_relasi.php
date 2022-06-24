@@ -3,8 +3,18 @@
 session_start();
 
 require '../functions/function.php';
+require 'function.php';
 
 $sql_gejala = mysqli_query(koneksi(), "SELECT * FROM gejala");
+$sql_penyakit = mysqli_query(koneksi(), "SELECT * FROM penyakit");
+
+if (isset($_POST['submit'])) {
+    tambahGejala();
+}
+
+if (isset($_POST['delete_gejala'])) {
+    hapusGejala($_POST['kode_gejala']);
+}
 
 ?>
 
@@ -115,7 +125,13 @@ $sql_gejala = mysqli_query(koneksi(), "SELECT * FROM gejala");
                                                     <td></td>
                                                 <?php endif ?>
                                                 <td>
-                                                    <a href="#" class="btn btn-warning">Edit</a>
+                                                    <div class="d-flex">
+                                                        <a href="#" class="btn btn-warning mr-2">Edit</a>
+                                                        <form action="" method="post" >
+                                                            <input type="hidden" name="kode_gejala" value="<?= $gejala_gejala['id_gejala'] ?>">
+                                                            <input class="btn btn-danger" type="submit" name="delete_gejala" value="Delete" onclick="return confirm('Hapus gejala ini ?')">
+                                                        </form>                                                        
+                                                    </div>
                                                 </td>
                                             </tr>                                         
                                          <?php endwhile ?>     
@@ -162,39 +178,17 @@ $sql_gejala = mysqli_query(koneksi(), "SELECT * FROM gejala");
                         <div class="col-md-2">
                             <label for="cf_pakar" class="form-label">CF Pakar</label>
                             <input type="text" class="form-control" id="cf_pakar" name="cf_pakar" required>
-                        </div>     
-                        <div class="col-auto mt-3">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="grdCheckButton">
-                              <label class="form-check-label" for="grdCheckButton">
-                                Gerd
-                              </label>
+                        </div>
+                        <?php while ($penyakit_penyakit = mysqli_fetch_array($sql_penyakit)): ?>                                 
+                            <div class="col-auto mt-3">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" name="<?= $penyakit_penyakit['kode_penyakit'] ?>" id="<?= $penyakit_penyakit['kode_penyakit'] ?>CheckButton">
+                                  <label class="form-check-label" for="<?= $penyakit_penyakit['kode_penyakit'] ?>CheckButton">
+                                    <?= $penyakit_penyakit['nama_penyakit'] ?> 
+                                  </label>
+                                </div>
                             </div>
-                        </div>      
-                        <div class="col-auto mt-3">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="gttCheckButton">
-                              <label class="form-check-label" for="gttCheckButton">
-                                Gastritis
-                              </label>
-                            </div>
-                        </div>     
-                        <div class="col-auto mt-3">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="dspCheckButton">
-                              <label class="form-check-label" for="dspCheckButton">
-                                Dispepsia
-                              </label>
-                            </div>
-                        </div>     
-                        <div class="col-auto mt-3">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="gtpCheckButton">
-                              <label class="form-check-label" for="gtpCheckButton">
-                                Gastroparesis
-                              </label>
-                            </div>
-                        </div>    
+                        <?php endwhile ?>  
                         <div class="col-md-12 mt-3">
                             <button class="btn btn-outline-primary" name="submit">Kirim Data</button>
                         </div>

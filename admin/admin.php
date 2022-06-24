@@ -3,8 +3,19 @@
 session_start();
 
 require '../functions/function.php';
+require 'function.php';
 
 $sql_admin = mysqli_query(koneksi(), "SELECT * FROM admin");
+
+if (isset($_POST['submit'])) {
+    tambahAdmin();
+}
+
+if (isset($_POST['delete_admin'])) {
+    hapusAdmin($_POST['id_admin']);
+}
+
+$no = 1;
 
 ?>
 
@@ -86,11 +97,15 @@ $sql_admin = mysqli_query(koneksi(), "SELECT * FROM admin");
                                     <tbody>
                                          <?php while ($data_admin = mysqli_fetch_array($sql_admin)): ?>
                                             <tr>
-                                                <td><?php $no = 1; echo $no; $no ++ ?></td>
+                                                <td><?= $no; $no ++ ?></td>
                                                 <td><?= $data_admin['username'] ?></td>
                                                 <td>
-                                                    <a href="#" class="btn btn-warning">Edit</a>
-                                                    <a href="#" class="btn btn-danger">Hapus</a>
+                                                    <div class="d-sm-flex ">
+                                                        <form action="" method="post">
+                                                            <input type="hidden" name="id_admin" value="<?= $data_admin['admin_id'] ?>">
+                                                            <input class="btn btn-danger" type="submit" name="delete_admin" value="Delete" onclick="return confirm('Hapus Administrator ini ?'")>
+                                                        </form>                                                         
+                                                    </div>                                                   
                                                 </td>
                                             </tr>                                         
                                          <?php endwhile ?>       

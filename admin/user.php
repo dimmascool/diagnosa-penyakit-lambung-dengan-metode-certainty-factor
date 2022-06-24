@@ -1,11 +1,20 @@
 <?php 
 
-session_start();
+    session_start();
 
-require '../functions/function.php';
+    require '../functions/function.php';
+    require 'function.php';
 
-$sql_user = mysqli_query(koneksi(), "SELECT * FROM user");
+    $sql_user = mysqli_query(koneksi(), "SELECT * FROM user");
 
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        register($_POST['username'], $_POST['password']);
+    }
+
+
+    if (isset($_POST['delete_user'])) {
+        hapusUser($_POST['id_user']);
+    }
 ?>
 
 
@@ -80,7 +89,8 @@ $sql_user = mysqli_query(koneksi(), "SELECT * FROM user");
                                         <tr>
                                             <th>No</th>
                                             <th class="text-center">Nama User</th>
-                                            <th class="text-center">Action</th>
+                                            <th class="text-center">Tanggal Daftar</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -88,7 +98,13 @@ $sql_user = mysqli_query(koneksi(), "SELECT * FROM user");
                                             <tr>
                                                 <td><?php $no = 1; echo $no; $no ++ ?></td>
                                                 <td><?= $data_user['username'] ?></td>
-                                                    <a href="#" class="btn btn-warning">Edit</a>
+                                                <td><?= $data_user['create_on'] ?></td>
+                                                <td>
+                                                    <form action="" method="post">
+                                                        <input type="hidden" name="id_user" value="<?= $data_user['id_user'] ?>">
+                                                        <input class="btn btn-danger" type="submit" name="delete_user" value="Delete" onclick="return confirm('Hapus User ini ?')">
+                                                    </form>  
+                                                </td>
                                                 </td>
                                             </tr>                                         
                                          <?php endwhile ?>     
