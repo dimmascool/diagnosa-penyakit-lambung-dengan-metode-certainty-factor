@@ -92,4 +92,52 @@
 		}
 	}
 
+	function editGejala() {
+		$kode_gejala = $_POST['kode_gejala_lama'];
+		$kode_gejala_edit = $_POST['kode_gejala'];
+	    $nama_gejala_edit = $_POST['nama_gejala'];
+	    $cf_pakar_edit = $_POST['cf_pakar'];
+
+	    if (isset($_POST['grd'])) {
+	    	if ($_POST['grd'] == "on") {
+		    	$grd = 1;
+		    }	    	
+	    } else {
+	    	$grd = 0;
+	    }
+
+	    if (isset($_POST['gtt'])) {
+	    	if ($_POST['gtt'] == "on") {
+		    	$gtt = 1;
+		    }	    	
+	    } else {
+	    	$gtt = 0;
+	    }
+
+	    if (isset($_POST['dsp'])) {
+	    	if ($_POST['dsp'] == "on") {
+		    	$dsp = 1;
+		    }	    	
+	    } else {
+	    	$dsp = 0;
+	    }
+
+	    if (isset($_POST['gtp'])) {
+	    	if ($_POST['gtp'] == "on") {
+		    	$gtp = 1;
+		    }	    	
+	    } else {
+	    	$gtp = 0;
+	    }
+
+	    
+
+	    $sql_update =  mysqli_query(koneksi(), "UPDATE `gejala` SET `id_gejala`='$kode_gejala_edit',`nama_gejala`='$nama_gejala_edit',`cf_pakar`='$cf_pakar_edit',`grd`='$grd',`gtt`='$gtt',`dsp`='$dsp',`gtp`='$gtp' WHERE id_gejala = '$kode_gejala'");
+		if ($sql_update) {
+			echo "<script>alert('Success');location.href='tabel_relasi.php';</script>";
+		} else {
+			echo "<script>alert('Gagal');location.href='tabel_relasi.php';</script>";
+		}
+	}
+
 ?>

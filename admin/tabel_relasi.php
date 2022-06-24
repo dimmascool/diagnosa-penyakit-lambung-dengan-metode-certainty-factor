@@ -126,7 +126,7 @@ if (isset($_POST['delete_gejala'])) {
                                                 <?php endif ?>
                                                 <td>
                                                     <div class="d-flex">
-                                                        <a href="#" class="btn btn-warning mr-2">Edit</a>
+                                                        <a href="edit_gejala.php?kode_gejala=<?= $gejala_gejala['id_gejala'] ?>" class="btn btn-warning mr-2">Edit</a>
                                                         <form action="" method="post" >
                                                             <input type="hidden" name="kode_gejala" value="<?= $gejala_gejala['id_gejala'] ?>">
                                                             <input class="btn btn-danger" type="submit" name="delete_gejala" value="Delete" onclick="return confirm('Hapus gejala ini ?')">
@@ -181,9 +181,9 @@ if (isset($_POST['delete_gejala'])) {
                         </div>
                         <?php while ($penyakit_penyakit = mysqli_fetch_array($sql_penyakit)): ?>                                 
                             <div class="col-auto mt-3">
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" name="<?= $penyakit_penyakit['kode_penyakit'] ?>" id="<?= $penyakit_penyakit['kode_penyakit'] ?>CheckButton">
-                                  <label class="form-check-label" for="<?= $penyakit_penyakit['kode_penyakit'] ?>CheckButton">
+                                <div class="custom-control custom-switch">
+                                  <input type="checkbox" class="custom-control-input" name="<?= $penyakit_penyakit['kode_penyakit'] ?>" id="<?= $penyakit_penyakit['kode_penyakit'] ?>CheckButton">
+                                  <label class="custom-control-label" for="<?= $penyakit_penyakit['kode_penyakit'] ?>CheckButton">
                                     <?= $penyakit_penyakit['nama_penyakit'] ?> 
                                   </label>
                                 </div>
