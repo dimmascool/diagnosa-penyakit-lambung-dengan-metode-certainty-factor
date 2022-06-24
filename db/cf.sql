@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Jun 2022 pada 15.48
+-- Waktu pembuatan: 24 Jun 2022 pada 13.28
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.0.19
 
@@ -53,13 +53,6 @@ CREATE TABLE `data_cf` (
   `nilai_persentase` varchar(100) NOT NULL,
   `created_on` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `data_cf`
---
-
-INSERT INTO `data_cf` (`id_data_cf`, `id_user`, `status`, `nilai_persentase`, `created_on`) VALUES
-(1, 0, 'GERD, Gastritis dan Gastroparesis', '0.24', '2022-06-22');
 
 -- --------------------------------------------------------
 
@@ -133,16 +126,16 @@ INSERT INTO `penyakit` (`id_penyakit`, `kode_penyakit`, `nama_penyakit`) VALUES
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `create_on` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `username`, `password`) VALUES
-(1, 'SamSamid', '123'),
-(2, 'SamSamid', '123');
+INSERT INTO `user` (`id_user`, `username`, `password`, `create_on`) VALUES
+(1, 'SamSamid', '123', '2022-06-24');
 
 --
 -- Indexes for dumped tables
@@ -192,7 +185,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `data_cf`
 --
 ALTER TABLE `data_cf`
-  MODIFY `id_data_cf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_data_cf` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `penyakit`
