@@ -20,7 +20,7 @@ $sql_gejala = mysqli_query(koneksi(), "SELECT * FROM gejala");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Perhitungan</title>
+    <title>Tabel Relasi</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -85,6 +85,7 @@ $sql_gejala = mysqli_query(koneksi(), "SELECT * FROM gejala");
                                             <th class="text-center">GTT</th>
                                             <th class="text-center">DSP</th>
                                             <th class="text-center">GTP</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -113,6 +114,9 @@ $sql_gejala = mysqli_query(koneksi(), "SELECT * FROM gejala");
                                                 <?php else : ?>
                                                     <td></td>
                                                 <?php endif ?>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning">Edit</a>
+                                                </td>
                                             </tr>                                         
                                          <?php endwhile ?>     
                                     </tbody>

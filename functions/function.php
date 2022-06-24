@@ -16,10 +16,12 @@
 		$password_user 	= $pass;
 
 		$check_username = mysqli_query(koneksi(), "SELECT * FROM user WHERE username = '$username_user' AND password = '$password_user'");
+		$data_user = mysqli_fetch_array($check_username);
 		if (mysqli_num_rows($check_username) > 0) {
 			session_start();
-			$_SESSION['username'] = $userr;
-			$_SESSION['privilege'] = 'Regular User';
+			$_SESSION['id_user']	= $data_user['id_user'];
+			$_SESSION['username'] 	= $userr;
+			$_SESSION['privilege'] 	= 'Regular User';
 			echo "<script>alert('Success');location.href='index.php'</script>";
 		} else {
 			echo "<script>alert('Username atau Password Salah');location.href='login.php'</script>";
@@ -42,10 +44,10 @@
 	function saveData() {
 		$status = $_POST['status'];
 		$nilai_persentase = $_POST['nilai_persentase'];
-		$username = $_SESSION['username'];
+		$id_user = $_SESSION['id_user'];
 		$create_on = date("Y-m-d");
 
-		$sql_insert_nilai = mysqli_query(koneksi(), "INSERT INTO data_cf VALUES ('','$username','$status','$nilai_persentase', '$create_on')");
+		$sql_insert_nilai = mysqli_query(koneksi(), "INSERT INTO data_cf VALUES ('','$id_user','$status','$nilai_persentase', '$create_on')");
 		if ($sql_insert_nilai) {
 			echo "<script>alert('Success');location.href='profil.php'</script>";
 		} 
