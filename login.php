@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require 'functions/function.php';
     error_reporting(0);
 
@@ -65,7 +66,7 @@
                                     <div class="text-center">
                                         <a class="small" href="register.php">Create an Account!</a> |
                                         <a class="small" href="login_admin.php">Login as Admin</a>  |
-                                        <a class="small" href="index.php">Skip Login</a> 
+                                        <a class="small" href="perhitungan.php">Skip Login</a> 
                                     </div>
                                 </div>
                             </div>

@@ -622,7 +622,7 @@
                                         <h4 class="card-title"><?= $status; ?></h4>
                                         <h1 class="card-text"><?php $persen = $nilai_tertinggi * 100; echo number_format((float)$persen, 2, '.', ''); echo "%";?></h1>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <a href="#" class="btn btn-sm btn-primary shadow-sm d-none" id="buttonClick" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a><br><br>
+                                            <a href="#" class="btn btn-sm btn-primary shadow-sm" id="buttonClick" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a><br><br>
                                             <?php if (isset($_SESSION['username'])): ?>
                                                 <form method="POST" action="">
                                                     <input type="text" name="status" value="<?= $status ?>" hidden readonly>
