@@ -4,7 +4,7 @@ session_start();
 
 require '../functions/function.php';
 
-$sql_gejala = mysqli_query(koneksi(), "SELECT * FROM user");
+$sql_admin = mysqli_query(koneksi(), "SELECT * FROM admin");
 
 ?>
 
@@ -78,47 +78,22 @@ $sql_gejala = mysqli_query(koneksi(), "SELECT * FROM user");
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">Kode Gejala</th> 
-                                            <th class="text-center">Nama Gejala</th>
-                                            <th class="text-center">CF Pakar</th>            
-                                            <th class="text-center">GRD</th>    
-                                            <th class="text-center">GTT</th>
-                                            <th class="text-center">DSP</th>
-                                            <th class="text-center">GTP</th>
+                                            <th class="text-center">No</th> 
+                                            <th class="text-center">Username Admin</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <?php while ($gejala_gejala = mysqli_fetch_array($sql_gejala)): ?>
-                                            <tr>  
-                                                <td><?= $gejala_gejala['id_gejala'] ?></td>
-                                                <td><?= $gejala_gejala['nama_gejala'] ?></td>
-                                                <td><?= $gejala_gejala['cf_pakar'] ?></td>
-                                                <?php if ($gejala_gejala['grd'] == true ): ?>
-                                                    <td class="text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                                                <?php else : ?>
-                                                    <td></td>
-                                                <?php endif ?>
-                                                <?php if ($gejala_gejala['gtt'] == true ): ?>
-                                                    <td class="text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                                                <?php else : ?>
-                                                    <td></td>
-                                                <?php endif ?>
-                                                <?php if ($gejala_gejala['dsp'] == true ): ?>
-                                                    <td class="text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                                                <?php else : ?>
-                                                    <td></td>
-                                                <?php endif ?>
-                                                <?php if ($gejala_gejala['gtp'] == true ): ?>
-                                                    <td class="text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                                                <?php else : ?>
-                                                    <td></td>
-                                                <?php endif ?>
+                                         <?php while ($data_admin = mysqli_fetch_array($sql_admin)): ?>
+                                            <tr>
+                                                <td><?php $no = 1; echo $no; $no ++ ?></td>
+                                                <td><?= $data_admin['username'] ?></td>
                                                 <td>
                                                     <a href="#" class="btn btn-warning">Edit</a>
+                                                    <a href="#" class="btn btn-danger">Hapus</a>
                                                 </td>
                                             </tr>                                         
-                                         <?php endwhile ?>     
+                                         <?php endwhile ?>       
                                     </tbody>
                                 </table>
                             </div>
