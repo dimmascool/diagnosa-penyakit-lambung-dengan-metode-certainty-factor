@@ -31,8 +31,9 @@
 	function register($userrr, $passs) {
 		$username_user_regis	= $userrr;
 		$password_user_regis 	= $passs;
+		$create_on = date("Y-m-d");
 
-		$sql_insert = mysqli_query(koneksi(), "INSERT INTO user VALUES ('','$username_user_regis','$password_user_regis')");
+		$sql_insert = mysqli_query(koneksi(), "INSERT INTO user VALUES ('','$username_user_regis','$password_user_regis', '$create_on')");
 		if ($sql_insert) {
 			echo "<script>alert('Success');location.href='login.php'</script>";
 		} else {
@@ -58,8 +59,10 @@
 		$password_admin 	= $_POST['password'];
 
 		$check_username = mysqli_query(koneksi(), "SELECT * FROM admin WHERE username = '$username_admin' AND password = '$password_admin'");
+		$check_username = mysqli_query(koneksi(), "SELECT * FROM admin WHERE username = '$username_admin' AND password = '$password_admin'");
 		if (mysqli_num_rows($check_username) > 0) {
 			session_start();
+			$_SESSION['id_user']	= $data_user['id_user'];
 			$_SESSION['username'] = $username_admin;
 			$_SESSION['privilege'] = 'Administrator';
 			echo "<script>alert('Success');location.href='admin/index.php'</script>";

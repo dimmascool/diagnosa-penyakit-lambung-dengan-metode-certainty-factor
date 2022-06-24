@@ -24,8 +24,21 @@
         </a>
         <div id="User" class="collapse" aria-labelledby="User" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">Daftar User</a>
+                <a class="collapse-item" href="user.php">Daftar User</a>
                 <a class="collapse-item" href="riwayat_check_up.php">Riwayat Check User</a>
+            </div>
+        </div>
+    </li>           
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#administrator"
+            aria-expanded="true" aria-controls="administrator">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Administrator</span>
+        </a>
+        <div id="administrator" class="collapse" aria-labelledby="administrator" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="admin.php">Daftar Administrator</a>
             </div>
         </div>
     </li>
