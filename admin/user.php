@@ -8,7 +8,7 @@
     $sql_user = mysqli_query(koneksi(), "SELECT * FROM user");
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
-        register($_POST['username'], $_POST['password']);
+        tambahUser($_POST['username'], $_POST['password']);
     }
 
 
