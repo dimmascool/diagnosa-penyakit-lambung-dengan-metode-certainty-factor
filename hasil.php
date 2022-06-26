@@ -583,10 +583,9 @@
                                 if ($jumlah_gejala_gtt == 1) { $nilai_tertinggi_gtt = $array_gtt[0]['cf_user'] *  $array_gtt[0]['cf_pakar']; $status = "Gastritis";}
                                 if ($jumlah_gejala_dsp == 1) { $nilai_tertinggi_dsp = $array_dsp[0]['cf_user'] *  $array_dsp[0]['cf_pakar']; $status = "Dispepsia";}
                                 if ($jumlah_gejala_gtp == 1) { $nilai_tertinggi_gtp = $array_gtp[0]['cf_user'] *  $array_gtp[0]['cf_pakar']; $status = "Gastroparesis";}
-                            ?>
-                            
-                            <?php
+
                                 $nilai_tertinggi = max($nilai_tertinggi_grd, $nilai_tertinggi_gtt, $nilai_tertinggi_dsp, $nilai_tertinggi_gtp); 
+                            
                                 if ($nilai_tertinggi == $nilai_tertinggi_grd) {
                                     $status = "GERD";
                                     $solusi = "GERD dapat diatasi dengan mengubah perilaku sehari-hari, seperti menurunkan berat badan, tidak langsung berbaring setelah makan, menjauhi makanan tertentu, termasuk buah yang asam, dan berhenti merokok. Beberapa tanaman herbal, seperti jahe, juga diklaim bermanfaat untuk mengatasi penyakit asam lambung.";
@@ -604,8 +603,8 @@
                                     $status = "Gastroparesis";
                                     $solusi = "Mengubah menu makanan anda sangat disarankan. lebih disarankan untuk mengonsumsi makanan yang lebih mudah dicerna seperti buah-buahan dan juga sayur-sayuran.";
                                 }
-                            
-                                
+
+                                // apabila ada nilai yang sama                                
                                 if ($nilai_tertinggi_grd == $nilai_tertinggi_gtt AND $nilai_tertinggi_grd == $nilai_tertinggi_dsp) {
                                     $status = "GERD, Gastritis dan Gastroparesis";
                                     $solusi = "Anda mengalami gejala yang dapat terbilang berat maka segera konsultasi langsung dengan dokter agar penanganan penyakit bisa ditangani secara maksimal";
@@ -616,10 +615,17 @@
                                         $status = "GERD";
                                         $solusi = "GERD dapat diatasi dengan mengubah perilaku sehari-hari, seperti menurunkan berat badan, tidak langsung berbaring setelah makan, menjauhi makanan tertentu, termasuk buah yang asam, dan berhenti merokok. Beberapa tanaman herbal, seperti jahe, juga diklaim bermanfaat untuk mengatasi penyakit asam lambung.";
                                     }
-                                } else if ($nilai_tertinggi_dsp == $nilai_tertinggi_gtp ) {
+                                } else if ($nilai_tertinggi_dsp == $nilai_tertinggi_gtp) {
                                     $status = "Dispepsia dan Gastroparesis";
                                     $solusi = "Utamakan atur pola makan dan juga jenis makanan, diutamakan bagi anda untuk mengkonsumsi makanan yang mudah dicerna oleh lambung. ini adalah solusi awal untuk penanganan lebih lanjut segera konsultasi kan dengan dokter untuk mendapatkan resep obat";
-                                }
+                                    if ($nilai_tertinggi == $nilai_tertinggi_gtt) {
+                                        $status = "Gastritis";
+                                        $solusi = "Pengobatan untuk gangguan pencernaan ini akan tergantung dari penyebab yang mendasarinya. Jika anda mengalami gastritis akibat penggunaan obat antiinflamasi nonsteroid (NSAID) atau obat lain, menghindari obat tersebut mungkin cukup untuk meredakan gejala. Jika anda merasa bahwa obat yang diresepkan dokter menyebabkan gastritis, bicarakan dengan dokter sebelum menghentikan atau mengubah dosisnya.Sementara itu, jika gastritis disebabkan oleh infeksi bakteri, gunakan antibiotik, beberapa jenis obat lain juga dapat digunakan untuk mengobati gastritis: Obat penghambat tingkat histamin pada tubuh, Obat penghambat produksi asam lambung.";
+                                    }
+                                } 
+
+
+                                // echo $nilai_tertinggi_grd . "<br>" . $nilai_tertinggi_gtt . "<br>" . $nilai_tertinggi_dsp . "<br>" . $nilai_tertinggi_gtp ;
               
                             ?>
 
