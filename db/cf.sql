@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Jun 2022 pada 13.28
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 8.0.19
+-- Waktu pembuatan: 26 Jun 2022 pada 17.38
+-- Versi server: 10.4.20-MariaDB
+-- Versi PHP: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -84,7 +84,7 @@ INSERT INTO `gejala` (`id_gejala`, `nama_gejala`, `cf_pakar`, `grd`, `gtt`, `dsp
 ('G07', 'Kembung', 0.4, 0, 1, 1, 0),
 ('G08', 'Nafsu makan berkurang', 0.2, 0, 1, 0, 0),
 ('G09', 'Muntah', 0.2, 0, 1, 1, 0),
-('G10', 'Lebih cepat kenyang', 0.4, 0, 0, 0, 1),
+('G10', 'Lebih cepat kenyang', 0.4, 0, 1, 0, 0),
 ('G11', 'Perut mengalami keram', 0.6, 0, 0, 0, 1),
 ('G12', 'Muntah setelah makan', 0.4, 0, 0, 0, 1),
 ('G13', 'Merasa kenyang', 0.2, 0, 0, 0, 1),
@@ -135,7 +135,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `create_on`) VALUES
-(1, 'SamSamid', '123', '2022-06-24');
+(1, 'SamSamid', '123', '2022-06-24'),
+(3, 'rudi', 'rudi', '2022-06-26');
 
 --
 -- Indexes for dumped tables
@@ -197,7 +198,7 @@ ALTER TABLE `penyakit`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
