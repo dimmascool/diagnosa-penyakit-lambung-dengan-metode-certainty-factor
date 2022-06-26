@@ -640,12 +640,12 @@
                                         <h4 class="card-title">Solusi yang dapat kami berikan adalah : </h4>
                                         <p class="card-title"><?= $solusi; ?></p>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <a href="#" class="btn btn-sm btn-primary shadow-sm" id="buttonClick" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a><br><br>
+                                            <a href="#" class="btn btn-sm btn-primary shadow-sm d-none" id="buttonClick" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a><br><br>
                                             <?php if (isset($_SESSION['username'])): ?>
                                                 <form method="POST" action="">
                                                     <input type="text" name="status" value="<?= $status ?>" hidden readonly>
                                                     <input type="text" name="nilai_persentase" value="<?= $nilai_tertinggi ?>" hidden readonly>
-                                                    <button class="btn btn-sm btn-primary shadow-sm" id="buttonSaveToServer" name="savedata" value="true"><i class="fas fa-download fa-sm text-white-50"></i> Save Data</button>
+                                                    <button class="btn btn-sm btn-primary shadow-sm d-none" id="buttonSaveToServer" name="savedata" value="true"><i class="fas fa-download fa-sm text-white-50"></i> Save Data</button>
                                                 </form>
                                             <?php endif ?>
                                         </div>
