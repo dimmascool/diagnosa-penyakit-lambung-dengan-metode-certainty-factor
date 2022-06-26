@@ -622,7 +622,11 @@
                                         $status = "Gastritis";
                                         $solusi = "Pengobatan untuk gangguan pencernaan ini akan tergantung dari penyebab yang mendasarinya. Jika anda mengalami gastritis akibat penggunaan obat antiinflamasi nonsteroid (NSAID) atau obat lain, menghindari obat tersebut mungkin cukup untuk meredakan gejala. Jika anda merasa bahwa obat yang diresepkan dokter menyebabkan gastritis, bicarakan dengan dokter sebelum menghentikan atau mengubah dosisnya.Sementara itu, jika gastritis disebabkan oleh infeksi bakteri, gunakan antibiotik, beberapa jenis obat lain juga dapat digunakan untuk mengobati gastritis: Obat penghambat tingkat histamin pada tubuh, Obat penghambat produksi asam lambung.";
                                     }
-                                } 
+                                }
+
+                                if ($nilai_tertinggi < 0) {
+                                    $solusi = "None";
+                                }
 
 
                                 // echo $nilai_tertinggi_grd . "<br>" . $nilai_tertinggi_gtt . "<br>" . $nilai_tertinggi_dsp . "<br>" . $nilai_tertinggi_gtp ;
@@ -645,7 +649,7 @@
                                                 <form method="POST" action="">
                                                     <input type="text" name="status" value="<?= $status ?>" hidden readonly>
                                                     <input type="text" name="nilai_persentase" value="<?= $nilai_tertinggi ?>" hidden readonly>
-                                                    <button class="btn btn-sm btn-primary shadow-sm d-none" id="buttonSaveToServer" name="savedata" value="true"><i class="fas fa-download fa-sm text-white-50"></i> Save Data</button>
+                                                    <button class="btn btn-sm btn-primary shadow-sm" id="buttonSaveToServer" name="savedata" value="true"><i class="fas fa-download fa-sm text-white-50"></i> Save Data</button>
                                                 </form>
                                             <?php endif ?>
                                         </div>
