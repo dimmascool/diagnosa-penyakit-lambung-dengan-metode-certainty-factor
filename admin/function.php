@@ -184,8 +184,7 @@
 	}
 
 	function hapusPenyakit(){
-		// $kode_penyakit = $_POST['kode_penyakit'];
-		$kode_penyakit = 'dead';
+		$kode_penyakit = $_POST['kode_penyakit'];
 		$sql_hapus_penyakit = mysqli_query(koneksi(), "DELETE FROM penyakit WHERE kode_penyakit = '$kode_penyakit'");
 		$sql_hapus_tabel_gejala = mysqli_query(koneksi(), "ALTER TABLE gejala DROP COLUMN $kode_penyakit");
 
