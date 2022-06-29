@@ -21,7 +21,8 @@
 
         $array_kode_gejala = array_merge($array_kode_gejala, array(
                 array(
-                    'gejala' => $kode_penyakit
+                    'gejala'        => $kode_penyakit,
+                    'nama_penyakit' => $data_penyakit['nama_penyakit']
                 )
             )
         );
@@ -120,9 +121,10 @@
 
                         <?php for ($iterasi_rumus=0; $iterasi_rumus < count($array_kode_gejala) ; $iterasi_rumus++) : ?>
                             <?php $kode_penyakit_rumus = $array_kode_gejala[$iterasi_rumus]['gejala']; ?>
+                            <?php $nama_penyakit = $array_kode_gejala[$iterasi_rumus]['nama_penyakit']; ?>
                             <?php if (${"jumlah_gejala_".$kode_penyakit_rumus} > 0): ?>
                             <div class="col-12" id="perhiutunganGrd">
-                                <h3>Perhitungan GERD</h3>
+                                <h3>Perhitungan <?= $nama_penyakit ?> </h3>
                                 <table class="table table-bordered">
                                     <thead class="table-warning">
                                         <tr>
@@ -257,7 +259,7 @@
                                         <h4 class="card-title">Solusi yang dapat kami berikan adalah : </h4>
                                         <p class="card-title"><?= $solusi; ?></p>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <a href="#" class="btn btn-sm btn-primary shadow-sm d-none" id="buttonClick" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a><br><br>
+                                            <a href="#" class="btn btn-sm btn-primary shadow-sm" id="buttonClick" onclick="printHasil()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a><br><br>
                                             <?php if (isset($_SESSION['username'])): ?>
                                                 <form method="POST" action="">
                                                     <input type="text" name="status" value="<?= $status ?>" hidden readonly>
