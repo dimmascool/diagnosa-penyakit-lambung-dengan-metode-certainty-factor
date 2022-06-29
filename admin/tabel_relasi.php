@@ -5,8 +5,11 @@ session_start();
 require '../functions/function.php';
 require 'function.php';
 
+
 $sql_gejala = mysqli_query(koneksi(), "SELECT * FROM gejala");
 $sql_penyakit = mysqli_query(koneksi(), "SELECT * FROM penyakit");
+$sql_penyakit2 = mysqli_query(koneksi(), "SELECT * FROM penyakit");
+$array_kode_gejala = array();
 
 if (isset($_POST['submit'])) {
     tambahGejala();
@@ -90,40 +93,36 @@ if (isset($_POST['delete_gejala'])) {
                                         <tr>
                                             <th class="text-center">Kode Gejala</th> 
                                             <th class="text-center">Nama Gejala</th>
-                                            <th class="text-center">CF Pakar</th>            
-                                            <th class="text-center">GRD</th>    
-                                            <th class="text-center">GTT</th>
-                                            <th class="text-center">DSP</th>
-                                            <th class="text-center">GTP</th>
+                                            <th class="text-center">CF Pakar</th>
+                                            <?php while($data_penyakit1 = mysqli_fetch_array($sql_penyakit2)) :?>   
+                                                <?php
+                                                    $kode_penyakit = $data_penyakit1['kode_penyakit'];
+                                                    $array_kode_gejala = array_merge($array_kode_gejala, array(
+                                                            array(
+                                                                'gejala' => $kode_penyakit
+                                                            )
+                                                        )
+                                                    ); 
+                                                ?>                                                        
+                                                <th class="text-center"><?= $data_penyakit1['kode_penyakit'] ?></th>  
+                                            <?php endwhile ?>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <?php while ($gejala_gejala = mysqli_fetch_array($sql_gejala)): ?>
+                                        <?php while ($gejala_gejala = mysqli_fetch_array($sql_gejala)) : ?>
                                             <tr>  
                                                 <td><?= $gejala_gejala['id_gejala'] ?></td>
                                                 <td><?= $gejala_gejala['nama_gejala'] ?></td>
                                                 <td><?= $gejala_gejala['cf_pakar'] ?></td>
-                                                <?php if ($gejala_gejala['grd'] == true ): ?>
-                                                    <td class="text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                                                <?php else : ?>
-                                                    <td></td>
-                                                <?php endif ?>
-                                                <?php if ($gejala_gejala['gtt'] == true ): ?>
-                                                    <td class="text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                                                <?php else : ?>
-                                                    <td></td>
-                                                <?php endif ?>
-                                                <?php if ($gejala_gejala['dsp'] == true ): ?>
-                                                    <td class="text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                                                <?php else : ?>
-                                                    <td></td>
-                                                <?php endif ?>
-                                                <?php if ($gejala_gejala['gtp'] == true ): ?>
-                                                    <td class="text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                                                <?php else : ?>
-                                                    <td></td>
-                                                <?php endif ?>
+                                                <?php for ($iterasi_rumus=0; $iterasi_rumus < count($array_kode_gejala) ; $iterasi_rumus++) : ?>
+                                                    <?php $kode_penyakit_rumus = $array_kode_gejala[$iterasi_rumus]['gejala']; ?>
+                                                    <?php if ($gejala_gejala[$kode_penyakit_rumus] == true ): ?>
+                                                        <td class="text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></td>
+                                                    <?php else : ?>
+                                                        <td></td>
+                                                    <?php endif ?>                                                    
+                                                <?php endfor ?>
                                                 <td>
                                                     <div class="d-flex">
                                                         <a href="edit_gejala.php?kode_gejala=<?= $gejala_gejala['id_gejala'] ?>" class="btn btn-warning mr-2">Edit</a>

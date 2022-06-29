@@ -48,16 +48,27 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Other Page
+        Tabel Relasi
     </div>
 
-    <!-- Nav Item - Tables -->
+    <!-- Nav Item - Dashboard -->           
+
     <li class="nav-item">
-        <a class="nav-link" href="tabel_relasi.php"><i class="fas fa-fw fa-table"></i><span>Tabel Relasi</span></a>
-    </li>
-    
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#gejala"
+            aria-expanded="true" aria-controls="gejala">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Tabel Relasi</span>
+        </a>
+        <div id="gejala" class="collapse" aria-labelledby="gejala" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="tabel_relasi.php">Tabel Gejala</a>
+                <a class="collapse-item" href="tabel_penyakit.php">Tabel Penyakit</a>
+            </div>
+        </div>
+    </li> 
+
     <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+    <hr class="sidebar-divider">
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

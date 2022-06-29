@@ -14,6 +14,18 @@ if ($_SESSION['privilege'] != 'Administrator') {
 $kode_gejala = $_GET['kode_gejala'];
 $sql_gejala = mysqli_query(koneksi(), "SELECT * FROM gejala WHERE id_gejala = '$kode_gejala'");
 $sql_penyakit = mysqli_query(koneksi(), "SELECT * FROM penyakit");
+$array_kode_gejala = array();
+
+while ($data_penyakit = mysqli_fetch_array($sql_penyakit)) {
+    $kode_penyakit = $data_penyakit['kode_penyakit'];
+    $array_kode_gejala = array_merge($array_kode_gejala, array(
+            array(
+                'gejala' => $kode_penyakit,
+                'nama_gejala' => $data_penyakit['nama_penyakit']
+            )
+        )
+    );    
+}
 
 
 if (isset($_POST['submit_edit'])) {
@@ -77,7 +89,7 @@ if (isset($_POST['submit_edit'])) {
                         <h3>Edit Gejala</h3>
                         <hr>
                         <form class="row g-3" method="post" action="">
-                            <?php while ($data = mysqli_fetch_array($sql_gejala)) : ?>
+                            <?php while ($data = mysqli_fetch_array($sql_gejala)) : ?>                         
                                <div class="col-md-2">
                                     <label for="kode_gejala" class="form-label">Kode Gejala</label>
                                     <input type="text" class="form-control" id="kode_gejala" name="kode_gejala" value="<?= $kode_gejala ?>" required>
@@ -91,31 +103,19 @@ if (isset($_POST['submit_edit'])) {
                                     <label for="cf_pakar" class="form-label">CF Pakar</label>
                                     <input type="text" class="form-control" id="cf_pakar" name="cf_pakar" value="<?= $data['cf_pakar'] ?>" required>
                                     <br>
-                                </div>                               
-                                <div class="col-auto">
-                                    <div class="custom-control custom-switch">
-                                        <input type="checkbox" class="custom-control-input" id="grd" name="grd" <?php if ($data['grd']) {echo "checked";} ?>>
-                                        <label class="custom-control-label" for="grd">GERD</label>
-                                    </div>
-                                </div>                                 
-                                <div class="col-auto">
-                                    <div class="custom-control custom-switch">
-                                        <input type="checkbox" class="custom-control-input" id="gtt" name="gtt" <?php if ($data['gtt']) {echo "checked";} ?>>
-                                        <label class="custom-control-label" for="gtt">Gastritis</label>
-                                    </div>
-                                </div>                               
-                                <div class="col-auto">
-                                    <div class="custom-control custom-switch">
-                                        <input type="checkbox" class="custom-control-input" id="dsp" name="dsp" <?php if ($data['dsp']) {echo "checked";} ?>>
-                                        <label class="custom-control-label" for="dsp">Dispepsia</label>
-                                    </div>
-                                </div>                               
-                                <div class="col-auto">
-                                    <div class="custom-control custom-switch">
-                                        <input type="checkbox" class="custom-control-input" id="gtp" name="gtp" <?php if ($data['gtp']) {echo "checked";} ?>>
-                                        <label class="custom-control-label" for="gtp">Gastroparesis</label>
-                                    </div>
-                                </div>                                                             
+                                </div>
+                                <?php for ($looping_gejala=0; $looping_gejala < count($array_kode_gejala) ; $looping_gejala++) : ?>
+                                    <?php 
+                                        $kode_gejala = $array_kode_gejala[$looping_gejala]['gejala']; 
+                                        $nama_gejala = $array_kode_gejala[$looping_gejala]['nama_gejala']; 
+                                    ?>  
+                                    <div class="col-auto">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="<?= $kode_gejala ?>" name="<?= $kode_gejala ?>" <?php if ($data[$kode_gejala]) {echo "checked";} ?>>
+                                            <label class="custom-control-label" for="<?= $kode_gejala ?>"><?= $nama_gejala ?></label>
+                                        </div>
+                                    </div>  
+                                <?php endfor ?>                                                                                                  
                                 <div class="col-md-12">
                                     <br>
                                     <input class="btn btn-primary" type="submit" name="submit_edit" value="Submit"  required>
