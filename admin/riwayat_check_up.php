@@ -6,6 +6,10 @@ if ($_SESSION['privilege'] != 'Administrator') {
 	echo "<script>alert('this user is not an Administrator');location.href='../login.php'</script>";
 }
 
+    if (isset($_POST['delete_penyakit'])) {
+        hapusPenyakit();
+    }
+
 require '../functions/function.php';
 $sql_data_cf = mysqli_query(koneksi(), "SELECT * FROM data_cf");
 $no = 1;
@@ -25,7 +29,7 @@ $no = 1;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Riwayat Check Up</title>
+    <title>Riwayat User </title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -62,21 +66,22 @@ $no = 1;
 
                     <!-- Page Heading -->
                     <div class="align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Riwayat Check Up User</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Riwayat Pasien</h1>
                     </div>
                     <div class="card">
                         <div class="card-header bg-light">
-                            Tabel Riwayat Periksa
+                            Tabel Riwayat Pemeriksaan
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered">        
                                 <thead class="table-primary">
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th>Nama User</th>
-                                        <th>Status</th>
-                                        <th>Persentase</th>
-                                        <th>Tanggal Periksa</th>
+                                        <th>Pasien</th>
+                                        <th>Status Penyakit</th>
+                                        <th>Persentase Penyakit</th>
+                                        <th>Tanggal Pemeriksaan Pasien</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,7 +92,8 @@ $no = 1;
                                         <td><?= $data_user['username'] ?></td>                                     
                                         <td><?= $data['status']?></td>                                        
                                         <td><?= number_format((float)($data['nilai_persentase'] * 100), 2, '.', ''); echo "%" ?></td>                                 
-                                        <td><?= $data['created_on']?></td>                                       
+                                        <td><?= $data['created_on']?></td> 
+                                                        
                                     </tr>
                                     <?php $no++ ?>
                                 <?php endwhile ?>                                    

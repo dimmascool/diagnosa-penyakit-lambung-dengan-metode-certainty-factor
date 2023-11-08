@@ -25,7 +25,7 @@
         <div id="User" class="collapse" aria-labelledby="User" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="user.php">Daftar User</a>
-                <a class="collapse-item" href="riwayat_check_up.php">Riwayat Check User</a>
+                <a class="collapse-item" href="riwayat_check_up.php">Riwayat User</a>
             </div>
         </div>
     </li>           
